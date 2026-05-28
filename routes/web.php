@@ -7,7 +7,8 @@ function routes(): array
     return [
         'GET /'       => 'login_index',
         'POST /login' => 'login_store',
-        'GET /logout' => 'login_destroy',
+        'GET /logout'    => 'login_destroy',
+        'GET /dashboard' => 'dashboard_index',
         'GET /setup' => 'setup_index',
         'GET /clientes' => 'cliente_index',
         'POST /clientes' => 'cliente_store',

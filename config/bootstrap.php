@@ -23,4 +23,5 @@ require_once __DIR__ . '/../controllers/categoria_controller.php';
 require_once __DIR__ . '/../controllers/producto_controller.php';
 require_once __DIR__ . '/../controllers/setup_controller.php';
 require_once __DIR__ . '/../controllers/login_controller.php';
+require_once __DIR__ . '/../controllers/dashboard_controller.php';
 require_once __DIR__ . '/../routes/web.php';
