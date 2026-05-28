@@ -15,6 +15,14 @@ function usuario_find(int $id): ?array
     return $stmt->fetch() ?: null;
 }
 
+function usuario_find_by_correo(string $correo): ?array
+{
+    $stmt = db()->prepare('SELECT * FROM usuarios WHERE correo = :correo LIMIT 1');
+    $stmt->execute(['correo' => $correo]);
+
+    return $stmt->fetch() ?: null;
+}
+
 function usuario_create(array $data): array
 {
     $data = only_fields($data, ['nombre', 'apellido', 'correo', 'password', 'rol']);

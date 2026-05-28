@@ -19,13 +19,39 @@ function db_server(): PDO
     ]);
 }
 
-function crear_base_de_datos(): void
+function crear_base_de_datos(): bool
 {
-    db_server()->exec(
+    $exe = db_server()->exec(
         'CREATE DATABASE IF NOT EXISTS ferreteria
          CHARACTER SET utf8mb4
          COLLATE utf8mb4_unicode_ci'
     );
+    if ($exe)
+        return true;
+    else
+        return false;
+}
+
+function seed_admin(): void
+{
+    $total = db()->query('SELECT COUNT(*) FROM usuarios')->fetchColumn();
+
+    if ((int) $total > 0) {
+        return;
+    }
+
+    $stmt = db()->prepare(
+        'INSERT INTO usuarios (nombre, apellido, correo, password, rol)
+           VALUES (:nombre, :apellido, :correo, :password, :rol)'
+    );
+
+    $stmt->execute([
+        'nombre'   => 'Administrador',
+        'apellido' => 'Sistema',
+        'correo'   => 'admin@ferreteria.com',
+        'password' => password_hash('admin123', PASSWORD_BCRYPT),
+        'rol'      => 'admin',
+    ]);
 }
 
 function crear_tablas(): void
@@ -109,4 +135,7 @@ function crear_tablas(): void
           UNIQUE KEY uk_usuarios_correo (correo)
       ) ENGINE=InnoDB'
     );
+
+    /// EJECUTAR ESTO SIEMPRE AL FINAL PARA INYECTAR EL USUARIO BASE
+    seed_admin();
 }

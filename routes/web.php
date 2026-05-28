@@ -5,7 +5,9 @@ declare(strict_types=1);
 function routes(): array
 {
     return [
-        'GET /' => 'home',
+        'GET /'       => 'login_index',
+        'POST /login' => 'login_store',
+        'GET /logout' => 'login_destroy',
         'GET /setup' => 'setup_index',
         'GET /clientes' => 'cliente_index',
         'POST /clientes' => 'cliente_store',
@@ -35,15 +37,16 @@ function dispatch(string $method, string $path): void
         ], 404);
     }
 
+    $view_routes = ['GET /', 'POST /login', 'GET /logout', 'GET /dashboard'];
+
+    if (!in_array($key, $view_routes)) {
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type');
+    }
+
     $handler = $routes[$key];
     $handler();
 }
 
-function home(): void
-{
-    json_response([
-        'ok' => true,
-        'message' => 'Servidor PHP puro con MVC procedural funcionando.',
-        'routes' => array_keys(routes()),
-    ]);
-}
