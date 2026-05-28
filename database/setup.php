@@ -96,4 +96,17 @@ function crear_tablas(): void
                 ON DELETE RESTRICT
         ) ENGINE=InnoDB'
     );
+
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS usuarios (
+          id_usuario INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+          nombre     VARCHAR(80)  NOT NULL,
+          apellido   VARCHAR(80)  NOT NULL,
+          correo     VARCHAR(120) NOT NULL,
+          password   VARCHAR(255) NOT NULL,
+          rol        ENUM(\'admin\', \'user\') NOT NULL DEFAULT \'user\',
+          activo     TINYINT(1) NOT NULL DEFAULT 1,
+          UNIQUE KEY uk_usuarios_correo (correo)
+      ) ENGINE=InnoDB'
+    );
 }

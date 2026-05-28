@@ -13,6 +13,7 @@ require_once __DIR__ . '/../models/cliente.php';
 require_once __DIR__ . '/../models/proveedor.php';
 require_once __DIR__ . '/../models/categoria.php';
 require_once __DIR__ . '/../models/producto.php';
+require_once __DIR__ . '/../models/usuario.php';
 
 require_once __DIR__ . '/../controllers/cliente_controller.php';
 require_once __DIR__ . '/../controllers/proveedor_controller.php';
