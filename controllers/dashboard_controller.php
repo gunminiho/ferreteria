@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 function dashboard_index(): void
 {
-    if (empty($_SESSION['usuario'])) {
-        header('Location: /');
-        exit;
-    }
+    auth_required();
 
     $usuario = $_SESSION['usuario'];
 

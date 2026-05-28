@@ -4,106 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferretería — Dashboard</title>
+    <link rel="stylesheet" href="/css/app.css">
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: #f1f5f9;
-            color: #0f172a;
-            min-height: 100vh;
-        }
-
-        /* NAVBAR */
-        .navbar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0 32px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .navbar__brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: #0f172a;
-            text-decoration: none;
-        }
-
-        .navbar__brand svg {
-            width: 28px;
-            height: 28px;
-            color: #2563eb;
-        }
-
-        .navbar__user {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .navbar__info {
-            text-align: right;
-        }
-
-        .navbar__name {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        .navbar__role {
-            font-size: 0.75rem;
-            color: #64748b;
-            text-transform: capitalize;
-        }
-
-        .navbar__avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #2563eb;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-            flex-shrink: 0;
-        }
-
-        .btn-logout {
-            padding: 7px 14px;
-            background-color: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.15s, color 0.15s;
-        }
-
-        .btn-logout:hover {
-            background-color: #fee2e2;
-            border-color: #fecaca;
-            color: #b91c1c;
-        }
-
-        /* MAIN */
         .main {
             max-width: 1200px;
             margin: 0 auto;
@@ -117,27 +19,25 @@
         .main__title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--color-text);
         }
 
         .main__subtitle {
             font-size: 0.9375rem;
-            color: #64748b;
+            color: var(--color-text-muted);
             margin-top: 4px;
         }
 
-        /* GRID */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
         }
 
-        /* CARD */
         .card {
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
             padding: 24px;
             cursor: pointer;
             transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
@@ -161,10 +61,7 @@
             margin-bottom: 16px;
         }
 
-        .card__icon svg {
-            width: 22px;
-            height: 22px;
-        }
+        .card__icon svg { width: 22px; height: 22px; }
 
         .card__icon--blue   { background-color: #dbeafe; color: #2563eb; }
         .card__icon--green  { background-color: #dcfce7; color: #16a34a; }
@@ -175,13 +72,13 @@
         .card__title {
             font-size: 1rem;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--color-text);
             margin-bottom: 4px;
         }
 
         .card__desc {
             font-size: 0.8125rem;
-            color: #64748b;
+            color: var(--color-text-muted);
             line-height: 1.5;
         }
 
@@ -190,8 +87,8 @@
             margin-top: 14px;
             font-size: 0.75rem;
             font-weight: 500;
-            color: #2563eb;
-            background-color: #eff6ff;
+            color: var(--color-primary);
+            background-color: var(--color-primary-light);
             border-radius: 6px;
             padding: 3px 8px;
         }
@@ -199,26 +96,7 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <a class="navbar__brand" href="/dashboard">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
-                    d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" />
-            </svg>
-            Ferretería
-        </a>
-
-        <div class="navbar__user">
-            <div class="navbar__info">
-                <div class="navbar__name"><?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?></div>
-                <div class="navbar__role"><?= htmlspecialchars($usuario['rol']) ?></div>
-            </div>
-            <div class="navbar__avatar">
-                <?= strtoupper(mb_substr($usuario['nombre'], 0, 1)) ?>
-            </div>
-            <a class="btn-logout" href="/logout">Cerrar sesión</a>
-        </div>
-    </nav>
+    <?php require __DIR__ . '/partials/navbar.php'; ?>
 
     <main class="main">
         <div class="main__header">

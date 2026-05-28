@@ -1,0 +1,183 @@
+:root {
+    --color-primary:       #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-light: #eff6ff;
+    --color-bg:            #f1f5f9;
+    --color-surface:       #ffffff;
+    --color-text:          #0f172a;
+    --color-text-muted:    #64748b;
+    --color-border:        #e2e8f0;
+    --color-input-bg:      #f8fafc;
+    --color-danger:        #b91c1c;
+    --color-danger-light:  #fef2f2;
+    --color-danger-border: #fecaca;
+    --radius:              8px;
+    --radius-lg:           12px;
+    --shadow-card:         0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* ── Navbar ─────────────────────────────────── */
+
+.navbar {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.navbar__brand svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-primary);
+}
+
+.navbar__user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar__info {
+    text-align: right;
+}
+
+.navbar__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.navbar__role {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: capitalize;
+}
+
+.navbar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+/* ── Botones ─────────────────────────────────── */
+
+.btn {
+    width: 100%;
+    padding: 11px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.15s;
+}
+
+.btn:hover  { background-color: var(--color-primary-hover); }
+.btn:active { background-color: #1e40af; }
+
+.btn-logout {
+    padding: 7px 14px;
+    background-color: var(--color-bg);
+    color: #475569;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-logout:hover {
+    background-color: var(--color-danger-light);
+    border-color: var(--color-danger-border);
+    color: var(--color-danger);
+}
+
+/* ── Formulario ──────────────────────────────── */
+
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.form__input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background: var(--color-input-bg);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+}
+
+.form__input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    background: var(--color-surface);
+}
+
+.form__input::placeholder {
+    color: #94a3b8;
+}
+
+/* ── Alerta ──────────────────────────────────── */
+
+.alert {
+    background-color: var(--color-danger-light);
+    border: 1px solid var(--color-danger-border);
+    color: var(--color-danger);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+}
